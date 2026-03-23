@@ -1,0 +1,53 @@
+<UserControl x:Class="OnMuhasebeApp.Presentation.Views.CariListView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Background="#F5F6F8">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/> 
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBlock Text="Cari Listesi" FontSize="24" FontWeight="Bold" Foreground="#333"/>
+            
+            <Button Content="Yenile" Command="{Binding LoadCommand}" Margin="20,0,0,0" Width="80" Height="30"/>
+            <Button Content="Yeni Cari Ekle" Command="{Binding AddCommand}" Margin="10,0,0,0" Width="120" Height="30" Background="#4CAF50" Foreground="White" FontWeight="SemiBold"/>
+            <Button Content="Düzenle" Command="{Binding UpdateCommand}" Margin="10,0,0,0" Width="80" Height="30" Background="#FFA500" Foreground="White" FontWeight="SemiBold"/>
+            <Button Content="Sil" Command="{Binding DeleteCommand}" Margin="10,0,0,0" Width="80" Height="30" Background="#F44336" Foreground="White" FontWeight="SemiBold"/>
+            <Button Content="XML İçe Aktar" 
+        Command="{Binding FaturaIceriAktarCommand}" 
+        Background="#9C27B0" 
+        Foreground="White" 
+        FontWeight="Bold" 
+        Width="110" 
+        Margin="5,0,0,0">
+    <Button.Resources>
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="3"/>
+        </Style>
+    </Button.Resources>
+</Button>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,15">
+            <TextBlock Text="Ara:" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" Foreground="#555" Margin="0,0,10,0"/>
+            
+            <TextBox Width="350" Height="30" VerticalContentAlignment="Center" Padding="5,0" 
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+            
+            <TextBlock Text="(Ünvan veya Vergi No'ya göre anında filtreler)" VerticalAlignment="Center" FontSize="12" Foreground="#999" Margin="10,0,0,0" FontStyle="Italic"/>
+        </StackPanel>
+
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Cariler}" SelectedItem="{Binding SelectedCari}" AutoGenerateColumns="False" IsReadOnly="True" Background="White" BorderThickness="1" BorderBrush="#DDD" SelectionMode="Single">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                <DataGridTextColumn Header="Ünvan" Binding="{Binding Unvan}" Width="*"/>
+                <DataGridTextColumn Header="Vergi Dairesi" Binding="{Binding VergiDairesi}" Width="150"/>
+                <DataGridTextColumn Header="Vergi No" Binding="{Binding VergiNo}" Width="120"/>
+                <DataGridTextColumn Header="Telefon" Binding="{Binding Telefon}" Width="120"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

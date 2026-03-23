@@ -1,0 +1,38 @@
+<Window x:Class="OnMuhasebeApp.Presentation.Views.CariUpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Cari Düzenle" Height="450" Width="350" WindowStartupLocation="CenterOwner" Background="#F5F6F8">
+    
+    <StackPanel Margin="20">
+        <TextBlock Text="Cari Ünvanı" Margin="0,0,0,5" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding GuncellenecekCari.Unvan, UpdateSourceTrigger=PropertyChanged}" 
+                 MaxLength="100" Height="30" Margin="0,0,0,15" VerticalContentAlignment="Center"/>
+
+        <TextBlock Text="Vergi Dairesi" Margin="0,0,0,5" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding GuncellenecekCari.VergiDairesi, UpdateSourceTrigger=PropertyChanged}" 
+                 PreviewTextInput="SadeceHarfEngeli"
+                 MaxLength="50" Height="30" Margin="0,0,0,15" VerticalContentAlignment="Center"/>
+
+        <TextBlock Text="Vergi No / TCKN" Margin="0,0,0,5" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding GuncellenecekCari.VergiNo, UpdateSourceTrigger=PropertyChanged}" 
+                 MaxLength="11" 
+                 PreviewTextInput="SadeceRakamEngeli"
+                 DataObject.Pasting="PastingHandler"
+                 Height="30" Margin="0,0,0,15" VerticalContentAlignment="Center"/>
+
+        <TextBlock Text="Telefon (90...)" Margin="0,0,0,5" FontWeight="SemiBold"/>
+        <TextBox Text="{Binding GuncellenecekCari.Telefon, UpdateSourceTrigger=PropertyChanged}" 
+                 MaxLength="12"
+                 PreviewTextInput="SadeceRakamEngeli"
+                 DataObject.Pasting="PastingHandler"
+                 Height="30" Margin="0,0,0,20" VerticalContentAlignment="Center"/>
+
+        <Button Content="Güncelle" Click="SaveButton_Click" Height="40" Background="#2196F3" Foreground="White" FontWeight="Bold">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </StackPanel>
+</Window>
